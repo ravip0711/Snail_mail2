@@ -25,9 +25,9 @@ class Mail
     fetched_XML.xpath("//message").each do |message|
       array_of_messages << {
         id: message.search("id").children.text,
+        time_received: message.search("created-at").text,
         from: message.search("from").children.text,
         subject: message.search("subject").children.text,
-        from: message.search("from").children.text,
         body: message.search("body").children.text
       }
     end
@@ -36,5 +36,5 @@ class Mail
 
 end
 
-# mail = Mail.parse_mail("bob@example.com")
-# puts mail
+# mail = Mail.new("bob@example.com")
+# puts mail.messages
