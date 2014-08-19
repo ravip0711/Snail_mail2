@@ -5,7 +5,8 @@ get '/users/:email_address/emails' do
     m.messages.each do |message|
       Email.create(user_id: user.id, subject: message[:subject], from: message[:from], body: message[:body], time_recieved: message[:time_recieved])
     end
-    user.emails.order(time_recieved: :desc).limit(200).to_json
+    # trying to limit
+    # user.emails.order(time_recieved: :desc).limit(200).to_json
   elsif m.status == "404"
     status 404
     "email address doesn't exist"
